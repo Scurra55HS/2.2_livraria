@@ -126,4 +126,21 @@ export const getCliente = (request, response) => {
     })
 
 };
+export const loginCliente = (request, response) => {
+    if (request.body.email && request.body.senha) {
+        let email = request.body.email;
+        let senha = request.body.senha;
+        
+        const checkSql = /*sql*/ `SELECT cliente_id, nome, email, senha FROM clientes WHERE email = ? AND senha = ?`;
+        const dataSelect = [email, senha];
+
+        conn.query(checkSql, dataSelect, (err, results) => {
+            if (err) {
+                console.log(err);
+                response.status(500).json({ message: "Erro ao buscar dados" })
+                return
+            }
+        })
+    }
+}
 

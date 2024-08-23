@@ -7,7 +7,8 @@ const router = Router();
 //? Definir as rotas
 
 //~ Buscar todos os livros
-router.get("/", getClientes);
+router.get("/", Auth.private, getClientes);
+
 router.post("/criar", criarCliente);
 router.get("/:id", buscarCliente);
 router.put("/editar/:id", editarCliente);
